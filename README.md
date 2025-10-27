@@ -45,7 +45,7 @@ It’s part of the **Compiler_Project**, demonstrating how lexical analysis work
 | `#d7khaaat`        | IMPORT_LIB (used to include libraries) |
 | `d7kspaace`        | NAMESPACE (define a scope or module) |
 | `main`             | Main_function (program entry point) |
-
+| `d7khrf` | Single character — “a play symbol or code.” |
 ---
 
 ###
