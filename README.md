@@ -1,4 +1,4 @@
-# 🏀 D7K Token Scanner
+# 😂 D7K Token Scanner
 
 A **lexical analyzer (scanner)** built in Python for a fictional programming language called **D7K**.  
 This tool scans source code and identifies different types of tokens such as keywords, data types, symbols, strings, and comments — just like the first stage of a compiler.
@@ -33,20 +33,16 @@ It’s part of the **Compiler_Project**, demonstrating how lexical analysis work
 ### 🔑 **Keywords**
 
 | D7K Keyword | Meaning / Subtype                           |
-| ------------------ | ------------------------------------------- |
-| `d7ktba3a`         | OUTPUT (print statement)                    |
-| `d7ked5al`         | INPUT (read user input)                     |
-| `d7klo`            | IF_STATEMENT                                |
-| `d7k8er`           | ELSE_BLOCK                                  |
-| `d7kdw5ny`         | WHILE_LOOP                                  |
-| `d7klf`            | FOR_LOOP                                    |
-| `d7krg3`           | RETURN_STATEMENT                            |
-| `d7kkml`           | UNKNOWN / placeholder keyword               |
-| `#d7khaaat`        | IMPORT_LIB (used to include libraries)      |
-| `d7kspaace`        | NAMESPACE (define a scope or module)        |
-| `main`             | Main_function (program entry point)         |
-| `d7k7rf`           | Single character — “a play symbol or code.” |
-
----
-
-###
+| ----------- | ------------------------------------------- |
+| `d7ktba3a`  | OUTPUT (print statement)                    |
+| `d7ked5al`  | INPUT (read user input)                     |
+| `d7klo`     | IF_STATEMENT                                |
+| `d7k8er`    | ELSE_BLOCK                                  |
+| `d7kdw5ny`  | WHILE_LOOP                                  |
+| `d7klf`     | FOR_LOOP                                    |
+| `d7krg3`    | RETURN_STATEMENT                            |
+| `d7kkml`    | UNKNOWN / placeholder keyword               |
+| `#d7khaaat` | IMPORT_LIB (used to include libraries)      |
+| `d7kspaace` | NAMESPACE (define a scope or module)        |
+| `main`      | Main_function (program entry point)         |
+| `d7k7rf`    | Single character — “a play symbol or code.” |
