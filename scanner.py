@@ -7,15 +7,15 @@ import re
 TOKENS = {
     "KEYWORD": [
         "d7kdlal", "d7ktba3a", "d7ked5al", "d7klo", "d7k8er",
-        "d7kdw5ny", "d7klf", "d7krg3", "#d7khaaat", "d7kspaace"
-        ,"main"
+        "d7kdw5ny", "d7klf", "d7krg3", "#d7khaaat", "d7kspaace",
+        "main"
     ],
     "DATA_TYPE": [
         "d7krkm", "d7k34ry", "d7kmslsl", "d7kmntk", "d7khrf"
     ],
     "SYMBOL": [r"\{", r"\}", r"\(", r"\)", r";", r"\[", r"\]", r"\+\+", r"--"],
-    "COMMENT": [r"//.*",r"/\*[\s\S]*?\*/"],
-    "STRING": [r"\".?\"", r"‘.?’", r"“.*?”"]
+    "COMMENT": [r"//.*", r"/\*[\s\S]*?\*/"],
+    "STRING": [r"\".*?\"", r"‘.*?’", r"“.*?”"]
 }
 
 # ==========================
@@ -32,12 +32,12 @@ TOKEN_TYPES = {
 
     # Structure & I/O
     "d7kdlal": "FUNCTION_DEF",
-    "d7ktba3a": "OUTPUT",      # updated from d7ktl3
-    "d7ked5al": "INPUT",       # updated from d7kd5l
-    "d7kkml": "UNKNOWN",       # added placeholder for d7k5d
+    "d7ktba3a": "OUTPUT",      # was d7ktl3 → renamed
+    "d7ked5al": "INPUT",       # was d7kd5l → renamed
+    "d7kkml": "UNKNOWN",       # was d7k5d → renamed
     "#d7khaaat": "IMPORT_LIB",
     "d7kspaace": "NAMESPACE",
-    "main" : "Main_function",
+    "main": "Main_function",
 
     # Data types
     "d7krkm": "INTEGER_TYPE",
@@ -46,7 +46,6 @@ TOKEN_TYPES = {
     "d7kmntk": "BOOLEAN_TYPE",
     "d7khrf": "CHAR_TYPE"
 }
-
 
 # ==========================
 # 🧠 Scanner Function
@@ -62,7 +61,6 @@ def scan_line(line_num, line):
                 subtype = TOKEN_TYPES.get(value, "")
                 results.append((token_type, subtype, value))
     return results
-
 
 # ==========================
 # 🏀 Main Function
@@ -80,5 +78,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 # ==========================
 # 🏁 End of BallScript Token Scanner
+# ==========================

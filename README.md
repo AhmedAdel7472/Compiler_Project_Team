@@ -1,4 +1,3 @@
-# Compiler_Project_Team
 # 🏀 BallScript Token Scanner
 
 A **lexical analyzer (scanner)** built in Python for a fictional programming language called **BallScript**.  
@@ -42,54 +41,11 @@ It’s part of the **Compiler_Project**, demonstrating how lexical analysis work
 | `d7kdw5ny`         | WHILE_LOOP |
 | `d7klf`            | FOR_LOOP |
 | `d7krg3`           | RETURN_STATEMENT |
+| `d7kkml`           | UNKNOWN / placeholder keyword |
 | `#d7khaaat`        | IMPORT_LIB (used to include libraries) |
 | `d7kspaace`        | NAMESPACE (define a scope or module) |
 | `main`             | Main_function (program entry point) |
 
 ---
 
-### 🧩 **Data Types**
-
-| BallScript Data Type | Meaning / Subtype |
-|----------------------|-------------------|
-| `d7krkm`             | INTEGER_TYPE |
-| `d7k34ry`            | DOUBLE_TYPE |
-| `d7kmslsl`           | STRING_TYPE |
-| `d7kmntk`            | BOOLEAN_TYPE |
-| `d7khrf`             | CHAR_TYPE |
-
----
-
-### ⚙️ **Symbols**
-
-| Symbol | Description |
-|---------|-------------|
-| `{` `}` | Curly braces for blocks |
-| `(` `)` | Parentheses for parameters or grouping |
-| `[` `]` | Square brackets for arrays |
-| `;` | Statement terminator |
-| `++` `--` | Increment / Decrement operators |
-
----
-
-### 💬 **Comments and Strings**
-
-| Type | Pattern Example |
-|------|------------------|
-| **Single-line Comment** | `// This is a comment` |
-| **Multi-line Comment**  | `/* comment block */` |
-| **String Literals** | `"Hello"`, `‘A’`, `“BallScript!”` |
-
----
-
-## 🧩 Example Input (`example.txt`)
-
-```ballscript
-d7kdlal main() {
-    d7krkm x = 5;
-    d7k34ry y = 3.14;
-    d7ktba3a("Hello BallScript!");
-    d7klo(x > y) {
-        d7ktba3a("x is greater!");
-    }
-}
+###
