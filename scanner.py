@@ -93,7 +93,7 @@ class D7KScriptScanner:
 # Main Entry Point
 # -----------------------------
 def main():
-    scanner = BallScriptScanner(TOKENS, TOKEN_TYPES)
+    scanner = D7KScriptScanner(TOKENS, TOKEN_TYPES)
     filename = "example.txt"
 
     tokens = scanner.scan_file(filename)
