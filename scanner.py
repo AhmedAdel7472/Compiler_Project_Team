@@ -44,7 +44,7 @@ TOKEN_TYPES = {
     "d7k34ry": "DOUBLE_TYPE",
     "d7kmslsl": "STRING_TYPE",
     "d7kmntk": "BOOLEAN_TYPE",
-    "d7k7rf": "CHAR_TYPE"
+    "d7khrf": "CHAR_TYPE"
 }
 
 # ==========================

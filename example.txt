@@ -1,0 +1,55 @@
+#d7khaaat "io_lib"
+
+d7kspaace BallGame
+{
+    d7kdlal main()
+    {
+        d7kint score = 0;
+        d7kfloat time = 60.0;
+        d7kstring player;
+
+        d7ktba3a("🏀 Welcome to BallScript Game!");
+        d7ked5al(player);
+        d7ktba3a("Hello " + player + "! Let's start the match.");
+
+        d7klo (score < 10)
+        {
+            d7ktba3a("Keep playing... your score is " + score);
+            score = score + 1;
+        }
+
+        d7kdw5ny (time > 0)
+        {
+            time = time - 1;
+        }
+
+        d7klf (d7kint i = 0; i < 3; i = i + 1)
+        {
+            d7ktba3a("Round " + i + " complete!");
+        }
+
+        d7kdlal addPoints(d7kint a, d7kint b)
+        {
+            d7krg3 a + b;
+        }
+
+        d7kint total = addPoints(5, 7);
+        d7ktba3a("Total points: " + total);
+
+        d7kkml(choice)
+        {
+            d7kcase 1:
+                d7ktba3a("Replay selected.");
+                d7kbreak;
+
+            d7kcase 2:
+                d7ktba3a("Exit selected.");
+                d7kbreak;
+
+            d7k8er:
+                d7ktba3a("Invalid option.");
+        }
+
+        d7k7rf;
+    }
+}
