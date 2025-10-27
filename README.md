@@ -1,13 +1,13 @@
-# 🏀 BallScript Token Scanner
+# 🏀 D7K Token Scanner
 
-A **lexical analyzer (scanner)** built in Python for a fictional programming language called **BallScript**.  
+A **lexical analyzer (scanner)** built in Python for a fictional programming language called **D7K**.  
 This tool scans source code and identifies different types of tokens such as keywords, data types, symbols, strings, and comments — just like the first stage of a compiler.
 
 ---
 
 ## 🚀 Project Overview
 
-The **BallScript Token Scanner** reads a `.txt` source file (default: `example.txt`) line by line, uses **regular expressions** to match token patterns, and classifies each match into categories and subtypes.
+The **D7K Token Scanner** reads a `.txt` source file (default: `example.txt`) line by line, uses **regular expressions** to match token patterns, and classifies each match into categories and subtypes.
 
 It’s part of the **Compiler_Project**, demonstrating how lexical analysis works during the compilation process.
 
@@ -28,13 +28,12 @@ It’s part of the **Compiler_Project**, demonstrating how lexical analysis work
 
 ---
 
-## 🏷️ BallScript Keywords and Data Types
+## 🏷️ D7K Keywords and Data Types
 
 ### 🔑 **Keywords**
 
-| BallScript Keyword | Meaning / Subtype                           |
+| D7K Keyword | Meaning / Subtype                           |
 | ------------------ | ------------------------------------------- |
-| `d7kdlal`          | FUNCTION_DEF (used to define a function)    |
 | `d7ktba3a`         | OUTPUT (print statement)                    |
 | `d7ked5al`         | INPUT (read user input)                     |
 | `d7klo`            | IF_STATEMENT                                |
