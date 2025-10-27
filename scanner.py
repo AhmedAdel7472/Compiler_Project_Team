@@ -1,5 +1,8 @@
 import re
 
+# -----------------------------
+# Token Definitions
+# -----------------------------
 TOKENS = {
     "KEYWORD": [
         "d7kdlal", "d7ktba3a", "d7ked5al", "d7klo", "d7k8er",
@@ -14,8 +17,7 @@ TOKENS = {
     "STRING": [r"\".*?\"", r"‘.*?’", r"“.*?”"]
 }
 
-# Mapping to a known language "CPP"
-
+# Mapping BallScript keywords to C++-like meaning
 TOKEN_TYPES = {
     # Control flow
     "d7klo": "IF_STATEMENT",
@@ -31,7 +33,7 @@ TOKEN_TYPES = {
     "d7kkml": "UNKNOWN",
     "#d7khaaat": "IMPORT_LIB",
     "d7kspaace": "NAMESPACE",
-    "main": "Main_function",
+    "main": "MAIN_FUNCTION",
 
     # Data types
     "d7krkm": "INTEGER_TYPE",
@@ -42,29 +44,64 @@ TOKEN_TYPES = {
 }
 
 
-def scan_line(line):
-    results = []
-    for token_type, patterns in TOKENS.items():
-        for pattern in patterns:
-            matches = re.finditer(pattern, line)
-            for match in matches:
-                value = match.group()
-                subtype = TOKEN_TYPES.get(value, "")
-                results.append((token_type, subtype, value))
-    return results
+# -----------------------------
+# Token Class
+# -----------------------------
+class Token:
+    def __init__(self, category, lexeme, subtype=None, line_number=None):
+        self.category = category      # e.g., KEYWORD, SYMBOL, DATA_TYPE
+        self.lexeme = lexeme          # actual text from source (e.g., d7klo)
+        self.subtype = subtype or ""  # deeper meaning (e.g., IF_STATEMENT)
+        self.line_number = line_number
+
+    def __str__(self):
+        return f"[Line {self.line_number}] {self.category:<15} | {self.subtype:<20} {self.lexeme}"
 
 
+# -----------------------------
+# Scanner Class
+# -----------------------------
+class D7KScriptScanner:
+    def __init__(self, tokens_map, token_types):
+        self.tokens_map = tokens_map
+        self.token_types = token_types
+
+    def scan_line(self, line, line_number):
+        results = []
+        for category, patterns in self.tokens_map.items():
+            for pattern in patterns:
+                matches = re.finditer(pattern, line)
+                for match in matches:
+                    lexeme = match.group()
+                    subtype = self.token_types.get(lexeme, "")
+                    token = Token(category, lexeme, subtype, line_number)
+                    results.append(token)
+        return results
+
+    def scan_file(self, filename):
+        with open(filename, "r", encoding="utf-8") as file:
+            lines = file.readlines()
+
+        all_tokens = []
+        for i, line in enumerate(lines, start=1):
+            tokens = self.scan_line(line, i)
+            all_tokens.extend(tokens)
+        return all_tokens
+
+
+# -----------------------------
+# Main Entry Point
+# -----------------------------
 def main():
-    filename = "example.txt"  # BallScript source file
-    with open(filename, "r", encoding="utf-8") as file:
-        lines = file.readlines()
+    scanner = BallScriptScanner(TOKENS, TOKEN_TYPES)
+    filename = "example.txt"
 
-    for i, line in enumerate(lines, start=1):
-        tokens = scan_line(line)
-        for token_type, subtype, value in tokens:
-            digitsCount = len(str(abs(i)))
-            spaces = 30 - int(digitsCount - 1)
-            print(f"[Line {i}] {token_type:<{spaces}} | {subtype:<{spaces}} {value}")
+    tokens = scanner.scan_file(filename)
 
-main()
+    print("=== BallScript Token Scanner ===\n")
+    for token in tokens:
+        print(token)
 
+
+if __name__ == "__main__":
+    main()
