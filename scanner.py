@@ -1,4 +1,5 @@
 import re
+import sys
 
 # ==========================
 # 🏀 BallScript Token Definitions (Updated)
@@ -51,7 +52,7 @@ TOKEN_TYPES = {
 # 🧠 Scanner Function
 # ==========================
 
-def scan_line(line_num, line):
+def scan_line(line):
     results = []
     for token_type, patterns in TOKENS.items():
         for pattern in patterns:
@@ -72,9 +73,11 @@ def main():
         lines = file.readlines()
 
     for i, line in enumerate(lines, start=1):
-        tokens = scan_line(i, line)
+        tokens = scan_line(line)
         for token_type, subtype, value in tokens:
-            print(f"[Line {i}] {token_type:<10} | {subtype:<18} {value}")
+            digitsCount = len(str(abs(i)))
+            spaces = 30 - int(digitsCount - 1)
+            print(f"[Line {i}] {token_type:<{spaces}} | {subtype:<{spaces}} {value}")
 
 if __name__ == "__main__":
     main()
