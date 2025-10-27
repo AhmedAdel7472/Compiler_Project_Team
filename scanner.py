@@ -1,9 +1,4 @@
 import re
-import sys
-
-# ==========================
-# 🏀 BallScript Token Definitions (Updated)
-# ==========================
 
 TOKENS = {
     "KEYWORD": [
@@ -19,9 +14,7 @@ TOKENS = {
     "STRING": [r"\".*?\"", r"‘.*?’", r"“.*?”"]
 }
 
-# ==========================
-# 🏁 Sub-Type Mapping for Output
-# ==========================
+# Mapping to a known language "CPP"
 
 TOKEN_TYPES = {
     # Control flow
@@ -33,9 +26,9 @@ TOKEN_TYPES = {
 
     # Structure & I/O
     "d7kdlal": "FUNCTION_DEF",
-    "d7ktba3a": "OUTPUT",      # was d7ktl3 → renamed
-    "d7ked5al": "INPUT",       # was d7kd5l → renamed
-    "d7kkml": "UNKNOWN",       # was d7k5d → renamed
+    "d7ktba3a": "OUTPUT",
+    "d7ked5al": "INPUT",
+    "d7kkml": "UNKNOWN",
     "#d7khaaat": "IMPORT_LIB",
     "d7kspaace": "NAMESPACE",
     "main": "Main_function",
@@ -48,9 +41,6 @@ TOKEN_TYPES = {
     "d7khrf": "CHAR_TYPE"
 }
 
-# ==========================
-# 🧠 Scanner Function
-# ==========================
 
 def scan_line(line):
     results = []
@@ -63,9 +53,6 @@ def scan_line(line):
                 results.append((token_type, subtype, value))
     return results
 
-# ==========================
-# 🏀 Main Function
-# ==========================
 
 def main():
     filename = "example.txt"  # BallScript source file
@@ -82,6 +69,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-# ==========================
-# 🏁 End of BallScript Token Scanner
-# ==========================
