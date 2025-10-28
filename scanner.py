@@ -98,7 +98,7 @@ def main():
 
     tokens = scanner.scan_file(filename)
 
-    print("=== BallScript Token Scanner ===\n")
+    print("=== D7K Token Scanner ===\n")
     for token in tokens:
         print(token)
 
