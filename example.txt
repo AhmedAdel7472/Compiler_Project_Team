@@ -1,14 +1,23 @@
+#d7khaaat
+d7kimport iostream;
+using namespace std;
 
-#d7khaaat World
-using d7kspaace std;
+d7krkm score = 102;
 
 d7krkm main() {
-    d7krkm score = 102;
+    d7ktba3a("Welcome!");
+    d7klo(score > 100) {
+        d7ktba3a("MVP performance!");
+    }
+    d7k8er {
+        d7ktba3a("Keep training!");
+    }
 
-    d7klo(score > 100)
-        d7ktba3a << "MVP performance!";
-    d7k8er
-        d7ktba3a << "Keep training!";
-
-d7krg3 0;
+    helper(5, 3);
+    
 }
+
+d7krkm helper(d7krkm x,d7krkm y) {
+    d7ktba3a("helper called");
+}
+

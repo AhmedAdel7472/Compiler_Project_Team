@@ -22,7 +22,7 @@ class Token:
 # ---------------------------
 
 # Reserved words (D7K + C-like additions)
-DATATYPES = {"d7krkm", "d7k34ry", "d7kmslsl", "d7kmntk", "d7khrf", "int", "float", "string"}
+DATATYPES = {"d7krkm", "d7k34ry", "d7kmslsl", "d7kmntk", "d7khrf"}
 KEYWORDS = {
     "d7ktba3a", "d7ked5al", "d7klo", "d7k8er",
     "d7kdw5ny", "d7klf", "d7krg3", "d7kspaace", "main", "d7kkml",
@@ -117,6 +117,7 @@ def scan_source(source: str) -> List[Token]:
     tokens.append(Token("EOF", "EOF", line))
     return tokens
 
+# Give the file content to scan_source which returns tokens
 def scan_file(filename: str) -> List[Token]:
     with open(filename, "r", encoding="utf-8") as f:
         source = f.read()
@@ -241,16 +242,6 @@ class Parser:
                 return self.function_def()
             return self.declaration()
 
-
-
-        # Declaration: datatype identifier = expr;
-        if tok.type == "DATATYPE" or (tok.type == "KEYWORD" and tok.lexeme in ["d7krkm","d7k34ry","d7kmslsl","d7kmntk","d7khrf"]):
-            # disambiguate: if after datatype + identifier comes '(' then it's function (handled above),
-            # else treat as declaration.
-            if self.peek().type == "IDENTIFIER" and self.peek(2).lexeme == "(":
-                return self.function_def()
-            return self.declaration()
-
         # assignment
         if tok.type == "IDENTIFIER":
             # If next lexeme is '(' then it's a function call statement (e.g., foo();)
@@ -318,10 +309,7 @@ class Parser:
         """
         # optional return type
         ret_type = None
-        if self.current().type == "DATATYPE":
-            ret_type = self.advance().lexeme
-        elif self.current().type == "KEYWORD" and self.current().lexeme == "d7kdlal":
-            # a special function keyword - consume
+        if self.current().type == "DATATYPE" and self.current().lexeme != "main":
             ret_type = self.advance().lexeme
         elif self.current().type == "KEYWORD" and self.current().lexeme == "main":
             # main with implicit return type
@@ -447,11 +435,6 @@ class Parser:
         node.add(body)
 
         return node
-
-
-    def lookahead_lexeme(self, lexeme):
-        tok = self.peek()
-        return tok and tok.lexeme == lexeme
     
     def param(self):
         dtype = self.match_type("DATATYPE")
@@ -621,41 +604,9 @@ class Parser:
             return node
         raise ParserError(f"Unexpected factor token: {tok}")
 
-# ---------------------------
-# Example / CLI (demo including import, using, int main etc.)
-# ---------------------------
-SAMPLE_SOURCE = """#d7khaaat
-d7kimport iostream;
-using namespace std;
 
-d7krkm score = 102;
-
-int main() {
-    d7ktba3a("Welcome!");
-    d7klo(score > 100) {
-        d7ktba3a("MVP performance!");
-    }
-    d7k8er {
-        d7ktba3a("Keep training!");
-    }
-    d7krg3 0;
-}
-
-d7krkm helper(d7krkm x,d7krkm y) {
-    d7ktba3a("helper called");
-}
-"""
-
-def main(argv):
-    if len(argv) >= 2 and argv[1] == "--file":
-        if len(argv) < 3:
-            print("Usage: d7k_compiler.py --file source.d7k")
-            return 1
-        fname = argv[2]
-        tokens = scan_file(fname)
-    else:
-        print("No file provided — using built-in sample. To scan a file: --file filename.d7k\n")
-        tokens = scan_source(SAMPLE_SOURCE)
+def main():
+    tokens = scan_file("example.txt")
 
     print("Tokens:")
     for t in tokens:
@@ -665,7 +616,8 @@ def main(argv):
     ast = parser.parse()
     print("\nAST:")
     pretty_print(ast)
+    
     return 0
 
-if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+
+main()

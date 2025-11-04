@@ -61,5 +61,4 @@ def main():
             spaces = 30 - int(digitsCount - 1)
             print(f"[Line {i}] {token_type:<{spaces}} | {subtype:<{spaces}} {value}")
 
-if __name__ == "__main__":
-    main()
+main()
