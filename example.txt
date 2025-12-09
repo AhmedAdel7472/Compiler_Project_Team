@@ -1,23 +1,25 @@
-#d7khaaat
-d7kimport iostream;
-using namespace std;
-
-d7krkm score = 102;
-
-d7krkm main() {
-    d7ktba3a("Welcome!");
-    d7klo(score > 100) {
-        d7ktba3a("MVP performance!");
-    }
-    d7k8er {
-        d7ktba3a("Keep training!");
-    }
-
-    helper(5, 3);
-    
+d7krqm sum(d7krqm a, d7krqm b) {
+    d7krqm result = a + b;
+    d7krg3 result;
 }
 
-d7krkm helper(d7krkm x,d7krkm y) {
-    d7ktba3a("helper called");
+d7kmntq isBig(d7krqm x) {
+    d7kmntq flag = x > 10;
+    d7krg3 flag;
 }
 
+d7kbdaya() {
+    d7krqm a = 5;
+    d7krqm b = 15;
+
+    d7krqm s = sum(a, b);
+    d7kmntq big = isBig(s);
+
+    d7klo(big) {
+        d7ktba3a("Result is big!");
+    } d7k8er {
+        d7ktba3a("Result is small.");
+    }
+
+    d7krg3;
+}

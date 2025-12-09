@@ -1,92 +1,106 @@
-# 😂 D7K Token Scanner
-
-A **lexical analyzer (scanner)** built in Python for a fictional programming language called **D7K**.  
-This tool scans source code and identifies different types of tokens such as keywords, data types, symbols, strings, and comments — just like the first stage of a compiler.
-
----
+# 😂 D7K Language
 
 ## 🚀 Project Overview
 
-The **D7K Token Scanner** reads a `.txt` source file (default: `example.txt`) line by line, uses **regular expressions** to match token patterns, and classifies each match into categories and subtypes.
+This project implements a mini compiler for a fictional programming language called D7K.
+It includes the first three stages of compilation:
 
-It’s part of the **Compiler_Project**, demonstrating how lexical analysis works during the compilation process.
-
----
-
-## 🧠 Features
-
-✅ Detects **keywords**, **data types**, **symbols**, **comments**, and **strings**  
-✅ Uses **regular expressions** (`re` module) for pattern matching  
-✅ Prints detailed output showing:
-
-- Line number
-- Token category (e.g., `KEYWORD`, `DATA_TYPE`)
-- Subtype (e.g., `IF_STATEMENT`, `INTEGER_TYPE`)
-- Actual matched value
-
-✅ Easily extensible — just add new patterns or token types in the `TOKENS` and `TOKEN_TYPES` dictionaries
-
----
-
-## 🏷️ D7K Keywords and Data Types
+1. Lexical Analysis (Scanner)
+2. Syntax Analysis (Parser)
+3. Semantic Analysis
 
 ### 🔑 **Keywords**
 
-| D7K Keyword | Meaning / Subtype                           |
-| ----------- | ------------------------------------------- |
-| `d7ktba3a`  | OUTPUT (print statement)                    |
-| `d7ked5al`  | INPUT (read user input)                     |
-| `d7klo`     | IF_STATEMENT                                |
-| `d7k8er`    | ELSE_BLOCK                                  |
-| `d7kdw5ny`  | WHILE_LOOP                                  |
-| `d7klf`     | FOR_LOOP                                    |
-| `d7krg3`    | RETURN_STATEMENT                            |
-| `d7kkml`    | UNKNOWN / placeholder keyword               |
-| `#d7khaaat` | IMPORT_LIB (used to include libraries)      |
-| `d7kspaace` | NAMESPACE (define a scope or module)        |
-| `main`      | Main_function (program entry point)         |
-| `d7k7rf`    | Single character — “a play symbol or code.” |
-
-
+| D7K Keyword | Meaning / Subtype                   |
+| ----------- | ----------------------------------- |
+| `d7ktba3a`  | OUTPUT (print statement)            |
+| `d7ked5al`  | INPUT (read user input)             |
+| `d7klo`     | IF_STATEMENT                        |
+| `d7k8er`    | ELSE_BLOCK                          |
+| `d7kdw5ny`  | WHILE_LOOP                          |
+| `d7klf`     | FOR_LOOP                            |
+| `d7krg3`    | RETURN_STATEMENT                    |
+| `d7kbdaya`  | Main_function (program entry point) |
+| `d7kmslsl`  | Define a string                     |
+| `d7krqm`    | Define a number type                |
+| `d7kmntq`   | Define a bool type                  |
+| `d7k34ry`   | Define a decimal type               |
 
 ### **Parser Grammer**
 
-D7K Language Grammar (based on your current code)
-Non-Terminal	Grammar
-Program →	StatementList EOF
-StatementList →	Statement StatementList | ε
-Statement →	ImportStmt | UsingNamespaceStmt | FunctionDef | Declaration | Assignment | CallStmt | IfStmt | WhileStmt | ForStmt | ReturnStmt | OutputStmt | InputStmt
-ImportStmt →	d7kimport Identifier ; | d7kimport < Identifier > ;
-UsingNamespaceStmt →	using namespace Identifier ;
-FunctionDef →	(DATATYPE | d7kdlal | main) Identifier ( Params ) { StatementList }
-Params →	Param , Params | Param | ε
-Param →	DATATYPE Identifier
-Declaration →	DATATYPE Identifier = Expr ; | DATATYPE Identifier ;
-Assignment →	Identifier = Expr ;
-CallStmt →	Identifier ( ArgList ) ;
-ArgList →	Expr , ArgList | Expr | ε
-IfStmt →	d7klo ( Condition ) { StatementList } | d7klo ( Condition ) { StatementList } d7k8er { StatementList }
-WhileStmt →	d7kdw5ny ( Condition ) { StatementList }
-ForStmt →	d7klf ( Declaration Condition ; Assignment ) { StatementList }
-ReturnStmt →	d7krg3 Expr ;
-OutputStmt →	d7ktba3a ( Expr ) ;
-InputStmt →	d7ked5al ( Identifier ) ;
-Condition →	Expr RelOp Expr
-Expr →	Expr + Term | Expr - Term | Term
-Term →	Term * Factor | Term / Factor | Factor
-Factor →	NUMBER | STRING | Identifier | ( Expr )
-RelOp →	== | != | < | > | <= | >=
+Terminals are written as their lexemes (e.g., 'd7kbdaya', '{', ';').
+Non-terminals are in CapitalizedNames.
 
+Program
+-> MainFunction EOF
 
+MainFunction
+-> 'd7kbdaya' '(' ')' Block
 
-not handeled yet 
-Documentation
-Scanner old code return before writing the new code and makhlouf updates it done    
-And we go to sleep 3ashan ayman 3ayez ynam done
-w ana 3ayez ashtry men ta7t w ayman bardo done
-function done
-importing libraries done 
-int main done
-namespace std; done
+Block
+-> '{' StatementList '}'
 
-Grammer docs in each function so if we want to update the grammar again later 
+StatementList
+-> { Statement }
+
+Statement
+-> VarDecl
+| Assignment ';'
+| IfStmt
+| WhileStmt
+| ForStmt
+| OutputStmt ';'
+| InputStmt ';'
+| ReturnStmt ';'
+
+VarDecl
+-> Type IDENT ( '=' Expr )? ';'
+
+Type
+-> 'd7krqm' // number (integer or float)
+| 'd7k34ry' // decimal
+| 'd7kmslsl' // string
+| 'd7kmntq' // bool
+
+Assignment
+-> IDENT '=' Expr
+
+IfStmt
+-> 'd7klo' '(' Expr ')' Block ['d7k8er' Block]
+
+WhileStmt
+-> 'd7kdw5ny' '(' Expr ')' Block
+
+ForStmt
+-> 'd7klf' '(' Assignment ';' Expr ';' Assignment ')' Block
+
+OutputStmt
+-> 'd7ktba3a' '(' Expr ')'
+
+InputStmt
+-> 'd7ked5al' '(' IDENT ')'
+
+ReturnStmt
+-> 'd7krg3' [Expr]
+
+Expr
+-> Equality
+
+Equality
+-> Relational { ('==' | '!=') Relational }
+
+Relational
+-> Add { ('<' | '>' | '<=' | '>=') Add }
+
+Add
+-> Mul { ('+' | '-') Mul }
+
+Mul
+-> Primary { ('\*' | '/') Primary }
+
+Primary
+-> NUMBER
+| STRING
+| BOOL_LITERAL // 'true' | 'false'
+| IDENT
+| '(' Expr ')'
